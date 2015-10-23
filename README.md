@@ -1,4 +1,4 @@
-### Design and Implementation of Mobile Applications <br/> 2015 - Politecnico di Milano
+### Design and Implementation of Mobile Applications<br/>*2015 - Politecnico di Milano*
 
 #### Repository Info
 The repository is structured in the following way:
