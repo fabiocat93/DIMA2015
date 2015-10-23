@@ -1,9 +1,8 @@
-### Design and Implementation of Mobile Applications 
-##### Politecnico di Milano - 2015
+### Design and Implementation of Mobile Applications 2015 - Politecnico di Milano
 
 #### Repository info
 The repository is structured in the following way:
-- Each lesson has its own branch (ex1)
+- Each lesson has its own branch (ex1, ex2, ...)
 - The master always points to the last version of the apps
 
 
