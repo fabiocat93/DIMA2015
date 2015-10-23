@@ -1,4 +1,5 @@
-### Design and Implementation of Mobile Applications<br/>*2015 - Politecnico di Milano*
+### Design and Implementation of Mobile Applications<br/>
+
 
 #### Repository Info
 The repository is structured in the following way:
@@ -14,3 +15,5 @@ Movies Diary is an app for movies addicted and it supports the following feature
 - Sharing
 - Search your reviews by different criteria (rate, title, director, etc.)
 - See your friends’ taste (if we will have time...)
+
+###### 2015 - Politecnico di Milano
