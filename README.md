@@ -1,12 +1,12 @@
-### Design and Implementation of Mobile Applications 2015 - Politecnico di Milano
+### Design and Implementation of Mobile Applications <br/> 2015 - Politecnico di Milano
 
-#### Repository info
+#### Repository Info
 The repository is structured in the following way:
 - Each lesson has its own branch (ex1, ex2, ...)
 - The master always points to the last version of the apps
 
 
-#### Movies Diary app
+#### Movies Diary App
 
 Movies Diary is an app for movies addicted and it supports the following feature:
 - Keep track of movies you have watched
