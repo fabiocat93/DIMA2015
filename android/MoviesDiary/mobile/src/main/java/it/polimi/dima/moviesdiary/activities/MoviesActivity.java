@@ -1,4 +1,4 @@
-package it.polimi.dima.moviesdiary;
+package it.polimi.dima.moviesdiary.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -8,6 +8,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.Arrays;
+import java.util.List;
+
+import it.polimi.dima.moviesdiary.R;
+import it.polimi.dima.moviesdiary.adapters.MovieArrayAdapter;
+import it.polimi.dima.moviesdiary.model.Movie;
 
 public class MoviesActivity extends AppCompatActivity {
 
@@ -22,6 +31,8 @@ public class MoviesActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        setupMoviesView();
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,8 +42,46 @@ public class MoviesActivity extends AppCompatActivity {
             }
         });
     }
+    /*
+    private void setupMoviesView(){
 
-    @Override
+        List<String> movies = Arrays.asList("Mulholland Drive",
+                "Interstellar", "Kill Bill");
+        ListView movieListView = (ListView) findViewById(R.id.movies_list);
+
+        ArrayAdapter<String> movieArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, movies);
+        movieListView.setAdapter(movieArrayAdapter);
+
+    }
+
+
+    private void setupMoviesView(){
+
+        List<Movie> movies = Movie.getMovies();
+        ListView movieListView = (ListView) findViewById(R.id.movies_list);
+
+        ArrayAdapter<Movie> movieArrayAdapter = new ArrayAdapter<Movie>(this,
+                android.R.layout.simple_list_item_1, movies);
+        movieListView.setAdapter(movieArrayAdapter);
+
+
+    }
+
+    */
+
+    private void setupMoviesView() {
+
+        List<Movie> movies = Movie.getMovies();
+        ListView movieListView = (ListView)
+                findViewById(R.id.movies_list);
+        MovieArrayAdapter movieArrayAdapter
+                = new MovieArrayAdapter(this, movies);
+
+        movieListView.setAdapter(movieArrayAdapter);
+
+    }
+
+        @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_movies, menu);
