@@ -1,5 +1,8 @@
 package it.polimi.dima.moviesdiary.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +11,12 @@ import java.util.List;
  */
 public class Movie {
 
+    @Expose
+    @SerializedName("Title")
     private String title;
 
+    @Expose
+    @SerializedName("Director")
     private String directorName;
 
     public Movie(){}

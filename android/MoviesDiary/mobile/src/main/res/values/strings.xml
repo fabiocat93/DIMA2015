@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Movies Diary</string>
     <string name="action_settings">Settings</string>
+    <string name="hello_user">Dear user</string>
+    <string name="click_on_movie">You have just clicked on &lt;b>%1$s&lt;/b> by %2$s</string>
+    <string name="confirm">Ok</string>
+    <string name="wait">Wait</string>
+    <string name="wait_movie_lib">Your movies diary is loading...</string>
+
 </resources>

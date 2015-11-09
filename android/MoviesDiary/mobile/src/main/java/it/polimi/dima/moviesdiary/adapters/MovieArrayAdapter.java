@@ -17,16 +17,18 @@ import it.polimi.dima.moviesdiary.model.Movie;
  */
 public class MovieArrayAdapter extends ArrayAdapter<Movie> {
 
-    public MovieArrayAdapter(Context context, List<Movie> movieList){
+    public MovieArrayAdapter(Context context, List<Movie> movieList) {
         super(context, 0, movieList);
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent){
+    public View getView(int position, View convertView, ViewGroup parent) {
 
         // View Holder pattern
 
         Movie movie = getItem(position);
+
+
         MovieViewHolder movieViewHolder;
 
         if(convertView == null) {
@@ -36,6 +38,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
             convertView = layoutInflater.inflate(R.layout.movie_row, null);
 
             movieViewHolder = new MovieViewHolder();
+
             movieViewHolder.titleTextView = (TextView) convertView.
                     findViewById(R.id.movie_title_text_view);
             movieViewHolder.directorTextView = (TextView) convertView
@@ -54,6 +57,7 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         movieViewHolder.directorTextView.setText(movie.getDirectorName());
 
         return convertView;
+
     }
 
     static class MovieViewHolder {
