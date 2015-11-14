@@ -11,28 +11,67 @@ import java.util.List;
  */
 public class Movie {
 
-    @Expose
     @SerializedName("Title")
+    @Expose
     private String title;
 
-    @Expose
     @SerializedName("Director")
-    private String directorName;
+    @Expose
+    private String director;
+
+    @SerializedName("Poster")
+    @Expose
+    private String posterUrl;
+
+    @SerializedName("Actors")
+    @Expose
+    private String actors;
+
+    @SerializedName("Plot")
+    @Expose
+    private String plot;
+
+    @SerializedName("Country")
+    @Expose
+    private String country;
+
+    @SerializedName("Metascore")
+    @Expose
+    private String metascore;
+
+    @SerializedName("imdbRating")
+    @Expose
+    private String imdbRating;
+
+    @SerializedName("imdbVotes")
+    @Expose
+    private String imdbVotes;
+
+    @SerializedName("imdbID")
+    @Expose
+    private String imdbId;
+
+    @SerializedName("Year")
+    @Expose
+    private String year;
+
+    private float userRating;
+    private String userReview;
+
 
     public Movie(){}
 
-    public Movie(String title, String directorName){
+    public Movie(String title, String director){
         this.title = title;
-        this.directorName = directorName;
+        this.director = director;
     }
 
-    public String getDirectorName() {
-        return directorName;
+    public Movie(String imdbId, float userRating, String userReview){
+        this.imdbId = imdbId;
+        this.userRating = userRating;
+        this.userReview = userReview;
     }
 
-    public void setDirectorName(String directorName) {
-        this.directorName = directorName;
-    }
 
     public String getTitle() {
         return title;
@@ -42,14 +81,111 @@ public class Movie {
         this.title = title;
     }
 
-    @Override
-    public String toString(){
-        return title+" - "+directorName;
+    public String getDirector() {
+        return director;
     }
 
-    public static List<Movie> getMovies(){
-        List<Movie> movies = new ArrayList<>();
+    public void setDirector(String director) {
+        this.director = director;
+    }
 
+    public String getPosterUrl() {
+        return posterUrl;
+    }
+
+    public void setPosterUrl(String posterUrl) {
+        this.posterUrl = posterUrl;
+    }
+
+    public String toString(){
+        return title+"\n"+director;
+    }
+
+    public String getActors() {
+        return actors;
+    }
+
+    public void setActors(String actors) {
+        this.actors = actors;
+    }
+
+    public String getPlot() {
+        return plot;
+    }
+
+    public void setPlot(String plot) {
+        this.plot = plot;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getMetascore() {
+        if(metascore == null || metascore.equals(""))
+            return "N/A";
+        return metascore;
+    }
+
+    public void setMetascore(String metascore) {
+        this.metascore = metascore;
+    }
+
+    public String getImdbRating() {
+        return imdbRating;
+    }
+
+    public void setImdbRating(String imdbRating) {
+        this.imdbRating = imdbRating;
+    }
+
+    public String getImdbVotes() {
+        return imdbVotes;
+    }
+
+    public void setImdbVotes(String imdbVotes) {
+        this.imdbVotes = imdbVotes;
+    }
+
+    public String getImdbId() {
+        return imdbId;
+    }
+
+    public void setImdbId(String imdbId) {
+        this.imdbId = imdbId;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public float getUserRating() {
+        return userRating;
+    }
+
+    public void setUserRating(float userRating) {
+        this.userRating = userRating;
+    }
+
+    public String getUserReview() {
+        return userReview;
+    }
+
+    public void setUserReview(String userReview) {
+        this.userReview = userReview;
+    }
+
+    public static List<Movie> movies(){
+
+        List<Movie> movies = new ArrayList<>();
         movies.add(new Movie("Mulholland Drive", "David Lynch"));
         movies.add(new Movie("Interstellar", "Christopher Nolan"));
         movies.add(new Movie("Kill Bill", "Quentin Tarantino"));
@@ -63,5 +199,6 @@ public class Movie {
         movies.add(new Movie("Rosemary's Baby", "Roman Polanski"));
 
         return movies;
+
     }
 }

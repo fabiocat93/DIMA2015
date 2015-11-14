@@ -18,12 +18,14 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import it.polimi.dima.moviesdiary.R;
 import it.polimi.dima.moviesdiary.adapters.MovieArrayAdapter;
 import it.polimi.dima.moviesdiary.model.Movie;
-import it.polimi.dima.moviesdiary.rest.MovieRestService;
+import it.polimi.dima.moviesdiary.rest.MovieRestInterface;
+import it.polimi.dima.moviesdiary.service.MovieService;
 import retrofit.Callback;
 import retrofit.GsonConverterFactory;
 import retrofit.Response;
@@ -32,10 +34,14 @@ import retrofit.RxJavaCallAdapterFactory;
 
 public class MoviesActivity extends AppCompatActivity {
 
+    private MovieService movieService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
+        movieService = MovieService.getInstance(this);
 
         // R.<resource type>.<resource name>
         setContentView(R.layout.activity_movies);
@@ -123,7 +129,7 @@ public class MoviesActivity extends AppCompatActivity {
         movieListView.setAdapter(movieArrayAdapter);
 
     }
-    */
+
 
     private void setupMoviesView() {
 
@@ -144,8 +150,8 @@ public class MoviesActivity extends AppCompatActivity {
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
 
-        MovieRestService restService = retrofit
-                .create(MovieRestService.class);
+        MovieRestInterface restService = retrofit
+                .create(MovieRestInterface.class);
 
         final TypedArray movieIds = getResources()
                 .obtainTypedArray(R.array.movie_imdb_ids);
@@ -181,6 +187,61 @@ public class MoviesActivity extends AppCompatActivity {
 
 
     }
+    */
+
+    private void setupMoviesView() {
+
+        final ProgressDialog progressDialog =
+                ProgressDialog.show(this,
+                        getResources().getString(R.string.wait),
+                        getResources().getString(R.string.wait_movie_lib), true, false);
+
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+
+        movieService.getAllMovies(new MovieService.Callback(){
+
+            @Override
+            public void onLoad(List<Movie> movies) {
+
+                Collections.sort(movies, new Comparator<Movie>() {
+                    @Override
+                    public int compare(Movie lhs, Movie rhs) {
+                        return lhs.getImdbId().compareTo(rhs.getImdbId());
+                    }
+                });
+
+                loadListView(movies);
+                progressDialog.dismiss();
+
+            }
+
+            @Override
+            public void onFailure() {
+                progressDialog.dismiss();
+
+                AlertDialog.Builder alertDialogBuilder =
+                        new AlertDialog.Builder(MoviesActivity.this);
+
+                alertDialogBuilder
+                        .setTitle(R.string.hello_user)
+                        .setMessage(R.string.error_on_loading_lib)
+                        .setCancelable(false)
+                        .setPositiveButton(R.string.reload, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                                setupMoviesView();
+                            }
+                        });
+
+                AlertDialog dialog = alertDialogBuilder.create();
+                dialog.show();
+
+            }
+        });
+
+
+    }
 
 
     private void loadListView(final List<Movie> movies){
@@ -201,7 +262,7 @@ public class MoviesActivity extends AppCompatActivity {
                 CharSequence message = Html.fromHtml(String.format(getResources().
                                 getString(R.string.click_on_movie),
                         movie.getTitle(),
-                        movie.getDirectorName()));
+                        movie.getDirector()));
 
                 alertDialogBuilder
                         .setTitle(R.string.hello_user)

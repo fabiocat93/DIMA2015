@@ -6,5 +6,7 @@
     <string name="confirm">Ok</string>
     <string name="wait">Wait</string>
     <string name="wait_movie_lib">Your movies diary is loading...</string>
-
+    <string name="error_on_loading_lib">An error occurred during library loading. Press <i>Reload</i> to retry.
+    </string>
+    <string name="reload">Reload</string>
 </resources>

@@ -8,7 +8,7 @@ import retrofit.http.Query;
 /**
  * Created by giovanniquattrocchi on 06/11/15.
  */
-public interface MovieRestService {
+public interface MovieRestInterface {
 
     @GET("/?")
     public Call<Movie> getMovie(@Query("i") String imdbId);

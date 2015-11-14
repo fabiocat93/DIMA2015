@@ -52,9 +52,8 @@ public class MovieArrayAdapter extends ArrayAdapter<Movie> {
         }
 
 
-
         movieViewHolder.titleTextView.setText(movie.getTitle());
-        movieViewHolder.directorTextView.setText(movie.getDirectorName());
+        movieViewHolder.directorTextView.setText(movie.getDirector());
 
         return convertView;
 
